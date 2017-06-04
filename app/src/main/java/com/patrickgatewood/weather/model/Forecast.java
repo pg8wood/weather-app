@@ -1,12 +1,13 @@
 package com.patrickgatewood.weather.model;
 
+import java.util.Collection;
+
 public class Forecast {
 
-    private int time;
-    private String summary;
-    private String icon;
-    private String precipType;
-    private int temperature;
-    private int apparentTemperature;
+    private CurrentForecast currentForecast;
+//    private HourlyForecast hourlyForecast;
 
+    public Forecast(CurrentForecast currentForecast) {
+        this.currentForecast = currentForecast;
+    }
 }
