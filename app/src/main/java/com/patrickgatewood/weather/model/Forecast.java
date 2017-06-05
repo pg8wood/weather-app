@@ -1,13 +1,37 @@
 package com.patrickgatewood.weather.model;
 
-import java.util.Collection;
+import com.google.gson.annotations.SerializedName;
 
 public class Forecast {
 
-    private CurrentForecast currentForecast;
-//    private HourlyForecast hourlyForecast;
+    @SerializedName("latitude")
+    private long latitude;
 
-    public Forecast(CurrentForecast currentForecast) {
-        this.currentForecast = currentForecast;
+    @SerializedName("longitude")
+    private long longitude;
+
+    @SerializedName("timezone")
+    private String timeZone;
+
+    @SerializedName("currently")
+    private ForecastData forecastData;
+
+//    @SerializedName("minutely")
+//    private MinutelyForecast minutely;
+
+    @SerializedName("hourly")
+    private HourlyForecast hourly;
+
+//    @SerializedName("daily")
+//    private DailyForecast daily;
+//
+//    @SerializedName("alerts")
+//    private Alerts alerts;
+
+
+
+
+    public Forecast(ForecastData forecastData) {
+        this.forecastData = forecastData;
     }
 }

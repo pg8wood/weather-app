@@ -4,13 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-
-import com.patrickgatewood.weather.Constants;
-import com.patrickgatewood.weather.DarkSkyClient;
-import com.patrickgatewood.weather.data.WeatherApplication;
-import com.patrickgatewood.weather.model.Forecast;
-
-import java.util.List;
+import android.zetterstrom.com.forecast.ForecastClient;
+import android.zetterstrom.com.forecast.models.Forecast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,26 +20,17 @@ public class WeatherViewModel {
     }
 
     public void onFetchButtonTap(View view) {
+
+    }
+
+    private void fetchCurrentForecast() {
         Log.v("Weather", "API call initiated");
-        WeatherApplication weatherApplication = WeatherApplication.create(context);
-        DarkSkyClient darkSkyClient = weatherApplication.getDarkSkyClient();
 
-        Call<List<Forecast>> apiCall = darkSkyClient.fetchCurrentForecast(
-                Constants.API_KEY, "38.029306", "-78.476678");
+        // TODO get user's current location
+        double latitude = 38.029306;
+        double longitude = -78.476678;
 
-        // Execute the call asynchronously. Get a positive or negative callback.
-        apiCall.enqueue(new Callback<List<Forecast>>() {
-            @Override
-            public void onResponse(Call<List<Forecast>> call, Response<List<Forecast>> response) {
-                Log.v("Weather", "API call was a success!");
-            }
-
-            @Override
-            public void onFailure(Call<List<Forecast>> call, Throwable t) {
-               Log.v("Weather", "API call failed :(");
-            }
-        });
-        
+        // TODO API call to current forecast
     }
 
 }
