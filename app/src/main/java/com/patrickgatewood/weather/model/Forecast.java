@@ -14,24 +14,18 @@ public class Forecast {
     private String timeZone;
 
     @SerializedName("currently")
-    private ForecastData forecastData;
+    private ForecastData currentForecastData;
 
-//    @SerializedName("minutely")
-//    private MinutelyForecast minutely;
+    @SerializedName("minutely")
+    private MinutelyForecast minutely;
 
     @SerializedName("hourly")
-    private HourlyForecast hourly;
+    private ForecastData hourlyForecastData;
 
-//    @SerializedName("daily")
-//    private DailyForecast daily;
-//
+    @SerializedName("daily")
+    private Forecast dailyForecastData;
+
 //    @SerializedName("alerts")
 //    private Alerts alerts;
 
-
-
-
-    public Forecast(ForecastData forecastData) {
-        this.forecastData = forecastData;
-    }
 }

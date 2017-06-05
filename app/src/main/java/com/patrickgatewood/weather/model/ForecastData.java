@@ -59,5 +59,43 @@ public class ForecastData {
     private double ozone;
 
 
+    // Fields only for daily forecast
+    @SerializedName("sunriseTime")
+    private long sunriseTime;
 
+    @SerializedName("sunsetTime")
+    private long sunserTime;
+
+    @SerializedName("moonPhase")
+    private double moonPhase;
+
+    @SerializedName("precipIntensityMax")
+    private double precipIntensityMax;
+
+    @SerializedName("precipIntensityMaxTime")
+    private double precipIntensityMaxTime;
+
+    @SerializedName("temperatureMin")
+    private double temperatureMin;
+
+    @SerializedName("temperatureMinTime")
+    private long temperatureMinTime;
+
+    @SerializedName("temperatureMax")
+    private double temperatureMax;
+
+    @SerializedName("temperatureMaxTime")
+    private long temperatureMaxTime;
+
+    @SerializedName("apparentTemperatureMin")
+    private double apparentTemperatureMin;
+
+    @SerializedName("apparentTemperatureMinTime")
+    private long apparentTemperatureMinTime;
+
+    @SerializedName("apparentTemperatureMax")
+    private double apparentTemperatureMax;
+
+    @SerializedName("apparentTemperatureMaxTime")
+    private long apparentTemperatureMaxTime;
 }
