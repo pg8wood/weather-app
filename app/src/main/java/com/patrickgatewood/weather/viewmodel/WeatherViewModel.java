@@ -11,8 +11,6 @@ import com.patrickgatewood.weather.DarkSkyClient;
 import com.patrickgatewood.weather.data.WeatherApplication;
 import com.patrickgatewood.weather.model.Forecast;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,7 +24,7 @@ public class WeatherViewModel {
     }
 
     public void onFetchButtonTap(View view) {
-        Log.v("Weather", "API call initiated");
+        Log.v("WeatherViewModel", "API call initiated");
         WeatherApplication weatherApplication = WeatherApplication.create(context);
         DarkSkyClient darkSkyClient = weatherApplication.getDarkSkyClient();
 
@@ -38,16 +36,16 @@ public class WeatherViewModel {
         apiCall.enqueue(new Callback<Forecast>() {
             @Override
             public void onResponse(@NonNull Call<Forecast> call, @Nullable Response<Forecast> response) {
-                Log.v("Weather", "API call was a success!");
+                Log.v("WeatherViewModel", "API call was a success!");
+                Log.v("WeatherViewModel", response.body().toString());
             }
 
             @Override
             public void onFailure(@NonNull Call<Forecast> call, @NonNull Throwable t) {
-                Log.e("Weather", "API call failed");
-                Log.e("Weather", t.getLocalizedMessage());
+                Log.e("WeatherViewModel", "API call failed");
+                Log.e("WeatherViewModel", t.getLocalizedMessage());
             }
         });
-
     }
 
 }

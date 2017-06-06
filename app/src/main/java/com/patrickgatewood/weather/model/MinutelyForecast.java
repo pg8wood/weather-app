@@ -33,4 +33,13 @@ class MinutelyForecast {
         @SerializedName("precipType")
         private String precipType;
     }
+
+    @Override
+    public String toString() {
+        return "MinutelyForecast{" +
+                "summary='" + summary + '\'' +
+                ", icon='" + icon + '\'' +
+                ", minutelyForecastDataList=" + minutelyForecastDataList +
+                '}';
+    }
 }

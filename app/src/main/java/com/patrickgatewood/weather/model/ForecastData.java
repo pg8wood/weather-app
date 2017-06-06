@@ -98,4 +98,41 @@ public class ForecastData {
 
     @SerializedName("apparentTemperatureMaxTime")
     private long apparentTemperatureMaxTime;
+
+    @Override
+    public String toString() {
+        return "ForecastData{" +
+                "time=" + time +
+                ", summary='" + summary + '\'' +
+                ", icon='" + icon + '\'' +
+                ", nearestStormDistance=" + nearestStormDistance +
+                ", precipIntensity=" + precipIntensity +
+                ", precipIntensityError=" + precipIntensityError +
+                ", precipProbability=" + precipProbability +
+                ", precipType='" + precipType + '\'' +
+                ", temperature=" + temperature +
+                ", apparentTemperature=" + apparentTemperature +
+                ", dewPoint=" + dewPoint +
+                ", humidity=" + humidity +
+                ", windSpeed=" + windSpeed +
+                ", windBearing=" + windBearing +
+                ", visibility=" + visibility +
+                ", cloudCover=" + cloudCover +
+                ", pressure=" + pressure +
+                ", ozone=" + ozone +
+                ", sunriseTime=" + sunriseTime +
+                ", sunserTime=" + sunserTime +
+                ", moonPhase=" + moonPhase +
+                ", precipIntensityMax=" + precipIntensityMax +
+                ", precipIntensityMaxTime=" + precipIntensityMaxTime +
+                ", temperatureMin=" + temperatureMin +
+                ", temperatureMinTime=" + temperatureMinTime +
+                ", temperatureMax=" + temperatureMax +
+                ", temperatureMaxTime=" + temperatureMaxTime +
+                ", apparentTemperatureMin=" + apparentTemperatureMin +
+                ", apparentTemperatureMinTime=" + apparentTemperatureMinTime +
+                ", apparentTemperatureMax=" + apparentTemperatureMax +
+                ", apparentTemperatureMaxTime=" + apparentTemperatureMaxTime +
+                '}';
+    }
 }

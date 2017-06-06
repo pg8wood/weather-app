@@ -28,4 +28,17 @@ public class Forecast {
 //    @SerializedName("alerts")
 //    private Alerts alerts;
 
+
+    @Override
+    public String toString() {
+        return "Forecast{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", timeZone='" + timeZone + '\'' +
+                ", currentForecastData=" + currentForecastData +
+                ", minutely=" + minutely +
+                ", hourlyForecastData=" + hourlyForecastData +
+                ", dailyForecastData=" + dailyForecastData +
+                '}';
+    }
 }
