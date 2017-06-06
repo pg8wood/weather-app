@@ -31,19 +31,20 @@ public class WeatherViewModel {
         DarkSkyClient darkSkyClient = weatherApplication.getDarkSkyClient();
 
         // TODO get user's location
-        Call<List<Forecast>> apiCall = darkSkyClient.fetchCurrentForecast(
+        Call<Forecast> apiCall = darkSkyClient.fetchCurrentForecast(
                 Constants.API_KEY, "38.029306", "-78.476678");
 
         // Execute the call asynchronously. Get a positive or negative callback.
-        apiCall.enqueue(new Callback<List<Forecast>>() {
+        apiCall.enqueue(new Callback<Forecast>() {
             @Override
-            public void onResponse(@NonNull Call<List<Forecast>> call, @Nullable Response<List<Forecast>> response) {
+            public void onResponse(@NonNull Call<Forecast> call, @Nullable Response<Forecast> response) {
                 Log.v("Weather", "API call was a success!");
             }
 
             @Override
-            public void onFailure(Call<List<Forecast>> call, Throwable t) {
-                Log.v("Weather", "API call failed :(");
+            public void onFailure(@NonNull Call<Forecast> call, @NonNull Throwable t) {
+                Log.e("Weather", "API call failed");
+                Log.e("Weather", t.getLocalizedMessage());
             }
         });
 

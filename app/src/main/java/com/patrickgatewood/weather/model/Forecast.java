@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 public class Forecast {
 
     @SerializedName("latitude")
-    private long latitude;
+    private double latitude;
 
     @SerializedName("longitude")
-    private long longitude;
+    private double longitude;
 
     @SerializedName("timezone")
     private String timeZone;
