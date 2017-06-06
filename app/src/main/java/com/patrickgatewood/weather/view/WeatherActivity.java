@@ -1,7 +1,5 @@
 package com.patrickgatewood.weather.view;
 
-import android.icu.text.BreakIterator;
-import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
