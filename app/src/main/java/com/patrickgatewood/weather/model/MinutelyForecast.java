@@ -34,6 +34,30 @@ class MinutelyForecast {
         private String precipType;
     }
 
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public List<MinutelyForecastData> getMinutelyForecastDataList() {
+        return minutelyForecastDataList;
+    }
+
+    public void setMinutelyForecastDataList(List<MinutelyForecastData> minutelyForecastDataList) {
+        this.minutelyForecastDataList = minutelyForecastDataList;
+    }
+
     @Override
     public String toString() {
         return "MinutelyForecast{" +

@@ -11,13 +11,16 @@ import com.patrickgatewood.weather.DarkSkyClient;
 import com.patrickgatewood.weather.data.WeatherApplication;
 import com.patrickgatewood.weather.model.Forecast;
 
+import java.util.Observable;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class WeatherViewModel {
+public class WeatherViewModel extends Observable {
 
     private Context context;
+    private Forecast currentForecast;
 
     public WeatherViewModel(@NonNull Context context) {
         this.context = context;
@@ -38,6 +41,8 @@ public class WeatherViewModel {
             public void onResponse(@NonNull Call<Forecast> call, @Nullable Response<Forecast> response) {
                 Log.v("WeatherViewModel", "API call was a success!");
                 Log.v("WeatherViewModel", response.body().toString());
+                currentForecast = response.body();
+                notifyObservers();
             }
 
             @Override
@@ -48,5 +53,12 @@ public class WeatherViewModel {
         });
     }
 
+    public Forecast getCurrentForecast() {
+        return currentForecast;
+    }
+
+    public void setCurrentForecast(Forecast currentForecast) {
+        this.currentForecast = currentForecast;
+    }
 }
 
