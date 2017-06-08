@@ -1,4 +1,4 @@
-package com.patrickgatewood.weather.viewmodel;
+package com.patrickgatewood.weather.ui;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,8 +7,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.patrickgatewood.weather.data.Constants;
-import com.patrickgatewood.weather.DarkSkyClient;
-import com.patrickgatewood.weather.model.Forecast;
+import com.patrickgatewood.weather.data.DarkSkyApi;
+import com.patrickgatewood.weather.data.model.Forecast;
 
 import java.util.Observable;
 
@@ -21,19 +21,20 @@ import retrofit2.Response;
 public class WeatherViewModel extends Observable {
 
     private Context context;
-    @Inject DarkSkyClient darkSkyClient;
+    private DarkSkyApi darkSkyApi;
+
     private Forecast currentForecast;
 
-    public WeatherViewModel(@NonNull Context context, DarkSkyClient darkSkyClient) {
+    public WeatherViewModel(@NonNull Context context, DarkSkyApi darkSkyApi) {
         this.context = context;
-        this.darkSkyClient = darkSkyClient;
+        this.darkSkyApi = darkSkyApi;
     }
 
     public void onFetchButtonTap(View view) {
         Log.v("WeatherViewModel", "API call initiated");
 
         // TODO get user's location
-        Call<Forecast> apiCall = darkSkyClient.fetchCurrentForecast(
+        Call<Forecast> apiCall = darkSkyApi.fetchCurrentForecast(
                 Constants.API_KEY, "38.029306", "-78.476678");
 
         // Execute the call asynchronously. Get a positive or negative callback.
@@ -58,8 +59,5 @@ public class WeatherViewModel extends Observable {
         return currentForecast;
     }
 
-    public void setCurrentForecast(Forecast currentForecast) {
-        this.currentForecast = currentForecast;
-    }
 }
 

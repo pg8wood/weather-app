@@ -1,5 +1,8 @@
 package com.example.patrickgatewood.weather.model;
 
+import com.google.gson.Gson;
+import com.patrickgatewood.weather.data.model.Forecast;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,20 +12,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
 @RunWith(RobolectricTestRunner.class)
 public class ModelTest {
     private static final String MOCK_JSON_RELATIVE_PATH = "/app/src/test/java/com/example/patrickgatewood/weather/model/mockJSON";
-    String mockJSONResponse;
+    private String mockJSONResponse;
 
     @Before
     public void setUpClass() throws FileNotFoundException {
-        String filePath = new File("").getAbsolutePath();
-        filePath = filePath.concat(MOCK_JSON_RELATIVE_PATH);
-       mockJSONResponse = new Scanner(new File(filePath)).useDelimiter("\\Z").next();
+        String filePath = System.getProperty("user.dir") + MOCK_JSON_RELATIVE_PATH;
+        mockJSONResponse = new Scanner(new File(filePath)).useDelimiter("\\Z").next();
     }
 
-    public void setUp() {
+    @Test
+    public void testForecastDeserialization() {
+        Gson gson = new Gson();
+        Forecast forecast = gson.fromJson(mockJSONResponse, Forecast.class);
     }
-
 
 }

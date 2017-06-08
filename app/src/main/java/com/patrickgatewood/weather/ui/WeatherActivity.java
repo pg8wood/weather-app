@@ -1,4 +1,4 @@
-package com.patrickgatewood.weather.view;
+package com.patrickgatewood.weather.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,11 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.patrickgatewood.weather.DarkSkyClient;
+import com.patrickgatewood.weather.data.DarkSkyApi;
+import com.patrickgatewood.weather.data.model.ForecastData;
 import com.patrickgatewood.weather.R;
-import com.patrickgatewood.weather.DarkSkyClientModule;
-import com.patrickgatewood.weather.model.ForecastData;
-import com.patrickgatewood.weather.viewmodel.WeatherViewModel;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -28,16 +26,20 @@ public class WeatherActivity extends AppCompatActivity implements Observer {
     @BindView(R.id.summaryTextView)
     TextView summaryTextView;
 
-    @Inject DarkSkyClient darkSkyClient;
+    @Inject
+    DarkSkyApi darkSkyApi;
 
     private WeatherViewModel weatherViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((WeatherApplication) getApplication()).getApplicationComponent().inject(this);
+
         setContentView(R.layout.activity_weather_slider);
+
         ButterKnife.bind(this);
-        weatherViewModel = new WeatherViewModel(this.getApplicationContext(), darkSkyClient);
+        weatherViewModel = new WeatherViewModel(this.getApplicationContext(), darkSkyApi);
         fetchApiDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
