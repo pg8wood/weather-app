@@ -15,6 +15,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        develop {
+            String apiKey = new File("$System.env.HOME/Documents/darkSkyApiKey.txt").text.trim()
+            buildConfigField "String", "API_KEY", "\"" + apiKey + "\""
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
