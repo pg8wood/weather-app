@@ -6,12 +6,13 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
-import com.patrickgatewood.weather.Constants;
+import com.patrickgatewood.weather.data.Constants;
 import com.patrickgatewood.weather.DarkSkyClient;
-import com.patrickgatewood.weather.data.WeatherApplication;
 import com.patrickgatewood.weather.model.Forecast;
 
 import java.util.Observable;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,16 +21,16 @@ import retrofit2.Response;
 public class WeatherViewModel extends Observable {
 
     private Context context;
+    @Inject DarkSkyClient darkSkyClient;
     private Forecast currentForecast;
 
-    public WeatherViewModel(@NonNull Context context) {
+    public WeatherViewModel(@NonNull Context context, DarkSkyClient darkSkyClient) {
         this.context = context;
+        this.darkSkyClient = darkSkyClient;
     }
 
     public void onFetchButtonTap(View view) {
         Log.v("WeatherViewModel", "API call initiated");
-        WeatherApplication weatherApplication = WeatherApplication.create(context);
-        DarkSkyClient darkSkyClient = weatherApplication.getDarkSkyClient();
 
         // TODO get user's location
         Call<Forecast> apiCall = darkSkyClient.fetchCurrentForecast(

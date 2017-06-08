@@ -4,10 +4,13 @@ import com.patrickgatewood.weather.model.Forecast;
 
 import java.util.List;
 
+import javax.inject.Singleton;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
+@Singleton
 public interface DarkSkyClient {
 
     @GET("{api_key}/{latitude},{longitude}")

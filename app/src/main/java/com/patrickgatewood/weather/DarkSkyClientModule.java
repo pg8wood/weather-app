@@ -1,16 +1,18 @@
-package com.patrickgatewood.weather.data;
+package com.patrickgatewood.weather;
 
-import com.patrickgatewood.weather.DarkSkyClient;
-
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class WeatherFactory {
+@Module
+public class DarkSkyClientModule {
 
     private static final String BASE_URL = "https://api.darksky.net/forecast/";
 
-    public static DarkSkyClient createClient() {
+    @Provides
+    public DarkSkyClient createClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
         Retrofit.Builder builder = new Retrofit.Builder()

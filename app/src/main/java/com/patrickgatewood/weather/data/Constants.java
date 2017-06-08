@@ -1,4 +1,4 @@
-package com.patrickgatewood.weather;
+package com.patrickgatewood.weather.data;
 
 public class Constants {
 
