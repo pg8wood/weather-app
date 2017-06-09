@@ -1,6 +1,7 @@
 package com.patrickgatewood.weather.ui;
 
 import android.app.Application;
+
 import com.patrickgatewood.weather.injection.ApplicationComponent;
 import com.patrickgatewood.weather.injection.ApplicationModule;
 import com.patrickgatewood.weather.injection.DaggerApplicationComponent;

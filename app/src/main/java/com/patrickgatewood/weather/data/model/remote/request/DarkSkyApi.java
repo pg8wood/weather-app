@@ -11,7 +11,7 @@ import retrofit2.http.Path;
 @Singleton
 public interface DarkSkyApi {
 
-    public String BASE_URL = "https://api.darksky.net/forecast/";
+    String BASE_URL = "https://api.darksky.net/forecast/";
 
     @GET("{api_key}/{latitude},{longitude}")
     Call<Forecast> fetchCurrentForecast(
