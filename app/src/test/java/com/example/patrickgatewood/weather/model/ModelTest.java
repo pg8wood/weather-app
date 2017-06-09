@@ -1,7 +1,7 @@
 package com.example.patrickgatewood.weather.model;
 
 import com.google.gson.Gson;
-import com.patrickgatewood.weather.data.model.Forecast;
+import com.patrickgatewood.weather.data.model.remote.response.Forecast;
 
 import org.junit.Before;
 import org.junit.Test;

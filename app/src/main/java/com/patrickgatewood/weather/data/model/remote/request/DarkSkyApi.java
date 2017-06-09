@@ -1,6 +1,6 @@
-package com.patrickgatewood.weather.data;
+package com.patrickgatewood.weather.data.model.remote.request;
 
-import com.patrickgatewood.weather.data.model.Forecast;
+import com.patrickgatewood.weather.data.model.remote.response.Forecast;
 
 import javax.inject.Singleton;
 

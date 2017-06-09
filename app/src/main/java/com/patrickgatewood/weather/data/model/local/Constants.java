@@ -1,4 +1,4 @@
-package com.patrickgatewood.weather.data;
+package com.patrickgatewood.weather.data.model.local;
 
 import com.patrickgatewood.weather.BuildConfig;
 

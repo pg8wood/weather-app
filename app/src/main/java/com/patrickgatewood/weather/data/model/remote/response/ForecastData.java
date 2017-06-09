@@ -1,4 +1,4 @@
-package com.patrickgatewood.weather.data.model;
+package com.patrickgatewood.weather.data.model.remote.response;
 
 import com.google.gson.annotations.SerializedName;
 

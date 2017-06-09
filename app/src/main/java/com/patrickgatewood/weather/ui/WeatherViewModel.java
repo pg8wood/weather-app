@@ -6,13 +6,11 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
-import com.patrickgatewood.weather.data.Constants;
-import com.patrickgatewood.weather.data.DarkSkyApi;
-import com.patrickgatewood.weather.data.model.Forecast;
+import com.patrickgatewood.weather.data.model.local.Constants;
+import com.patrickgatewood.weather.data.model.remote.request.DarkSkyApi;
+import com.patrickgatewood.weather.data.model.remote.response.Forecast;
 
 import java.util.Observable;
-
-import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;

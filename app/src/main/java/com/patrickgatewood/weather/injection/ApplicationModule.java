@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.patrickgatewood.weather.data.DarkSkyApi;
+import com.patrickgatewood.weather.data.model.remote.request.DarkSkyApi;
 
 import javax.inject.Singleton;
 
@@ -15,7 +15,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.patrickgatewood.weather.data.DarkSkyApi.BASE_URL;
+import static com.patrickgatewood.weather.data.model.remote.request.DarkSkyApi.BASE_URL;
 
 @Module
 public class ApplicationModule {
@@ -54,7 +54,7 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    public DarkSkyApi provideDarkskyApi(Retrofit retrofit) {
+    DarkSkyApi provideDarkskyApi(Retrofit retrofit) {
         return retrofit.create(DarkSkyApi.class);
     }
 }

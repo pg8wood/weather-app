@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.patrickgatewood.weather.data.DarkSkyApi;
-import com.patrickgatewood.weather.data.model.ForecastData;
+import com.patrickgatewood.weather.data.model.remote.request.DarkSkyApi;
+import com.patrickgatewood.weather.data.model.remote.response.ForecastData;
 import com.patrickgatewood.weather.R;
 
 import java.util.Observable;
