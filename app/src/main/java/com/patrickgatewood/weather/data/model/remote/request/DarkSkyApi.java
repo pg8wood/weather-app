@@ -1,14 +1,17 @@
-package com.patrickgatewood.weather;
+package com.patrickgatewood.weather.data.model.remote.request;
 
-import com.patrickgatewood.weather.model.Forecast;
+import com.patrickgatewood.weather.data.model.remote.response.Forecast;
 
-import java.util.List;
+import javax.inject.Singleton;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface DarkSkyClient {
+@Singleton
+public interface DarkSkyApi {
+
+    String BASE_URL = "https://api.darksky.net/forecast/";
 
     @GET("{api_key}/{latitude},{longitude}")
     Call<Forecast> fetchCurrentForecast(

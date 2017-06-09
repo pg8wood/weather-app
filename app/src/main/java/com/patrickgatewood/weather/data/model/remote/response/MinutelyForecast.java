@@ -1,10 +1,10 @@
-package com.patrickgatewood.weather.model;
+package com.patrickgatewood.weather.data.model.remote.response;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-class MinutelyForecast {
+public class MinutelyForecast {
 
     @SerializedName("summary")
     private String summary;
@@ -22,13 +22,13 @@ class MinutelyForecast {
         private long time;
 
         @SerializedName("precipIntensity")
-        private long precipIntensity;
+        private double precipIntensity;
 
         @SerializedName("precipIntensityError")
-        private long precipIntensityError;
+        private double precipIntensityError;
 
         @SerializedName("precipProbability")
-        private long precipProbability;
+        private double precipProbability;
 
         @SerializedName("precipType")
         private String precipType;

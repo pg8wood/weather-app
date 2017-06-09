@@ -1,7 +1,6 @@
-package com.patrickgatewood.weather.model;
+package com.patrickgatewood.weather.data.model.remote.response;
 
 import com.google.gson.annotations.SerializedName;
-import com.patrickgatewood.weather.data.model.remote.response.MinutelyForecast;
 
 public class Forecast {
 
@@ -25,10 +24,6 @@ public class Forecast {
 
     @SerializedName("daily")
     private Forecast dailyForecastData;
-
-//    @SerializedName("alerts")
-//    private Alerts alerts;
-
 
     public double getLatitude() {
         return latitude;
@@ -84,6 +79,42 @@ public class Forecast {
 
     public void setDailyForecastData(Forecast dailyForecastData) {
         this.dailyForecastData = dailyForecastData;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Forecast forecast = (Forecast) o;
+        if (Double.compare(forecast.latitude, latitude) != 0) return false;
+        if (Double.compare(forecast.longitude, longitude) != 0) return false;
+        if (timeZone != null ? !timeZone.equals(forecast.timeZone) : forecast.timeZone != null)
+            return false;
+        if (currentForecastData != null ? !currentForecastData.equals(forecast.currentForecastData) : forecast.currentForecastData != null)
+            return false;
+        if (minutely != null ? !minutely.equals(forecast.minutely) : forecast.minutely != null)
+            return false;
+        if (hourlyForecastData != null ? !hourlyForecastData.equals(forecast.hourlyForecastData) : forecast.hourlyForecastData != null)
+            return false;
+        return dailyForecastData != null ? dailyForecastData.equals(forecast.dailyForecastData) : forecast.dailyForecastData == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(latitude);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(longitude);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (timeZone != null ? timeZone.hashCode() : 0);
+        result = 31 * result + (currentForecastData != null ? currentForecastData.hashCode() : 0);
+        result = 31 * result + (minutely != null ? minutely.hashCode() : 0);
+        result = 31 * result + (hourlyForecastData != null ? hourlyForecastData.hashCode() : 0);
+        result = 31 * result + (dailyForecastData != null ? dailyForecastData.hashCode() : 0);
+        return result;
     }
 
     @Override
