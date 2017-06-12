@@ -6,6 +6,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.patrickgatewood.weather.data.model.remote.request.DarkSkyApi;
+import com.patrickgatewood.weather.ui.WeatherViewModel;
 
 import javax.inject.Singleton;
 
@@ -56,5 +57,11 @@ public class ApplicationModule {
     @Singleton
     DarkSkyApi provideDarkskyApi(Retrofit retrofit) {
         return retrofit.create(DarkSkyApi.class);
+    }
+
+    @Provides
+    @Singleton
+    WeatherViewModel provideWeatherViewModel(DarkSkyApi darkSkyApi) {
+        return new WeatherViewModel(darkSkyApi);
     }
 }

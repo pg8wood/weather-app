@@ -1,5 +1,6 @@
 package com.patrickgatewood.weather.ui;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -21,9 +22,9 @@ public class WeatherViewModel extends Observable {
 
     private DarkSkyApi darkSkyApi;
 
-    @Inject
     Forecast currentForecast;
 
+    @Inject
     public WeatherViewModel(DarkSkyApi darkSkyApi) {
         this.darkSkyApi = darkSkyApi;
     }
@@ -42,6 +43,7 @@ public class WeatherViewModel extends Observable {
                 Log.v("WeatherViewModel", "API call was a success!");
                 Log.v("WeatherViewModel", response.body().toString());
                 currentForecast = response.body();
+                setChanged();
                 notifyObservers();
             }
 

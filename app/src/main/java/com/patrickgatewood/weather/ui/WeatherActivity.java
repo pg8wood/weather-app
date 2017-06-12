@@ -2,6 +2,7 @@ package com.patrickgatewood.weather.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,17 +30,19 @@ public class WeatherActivity extends AppCompatActivity implements Observer {
     @Inject
     DarkSkyApi darkSkyApi;
 
-    private WeatherViewModel weatherViewModel;
+    @Inject
+    WeatherViewModel weatherViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((WeatherApplication) getApplication()).getApplicationComponent().inject(this);
-
         setContentView(R.layout.activity_weather_slider);
 
+        ((WeatherApplication) getApplication()).getApplicationComponent().inject(this);
+        weatherViewModel.addObserver(this);
+
         ButterKnife.bind(this);
-        weatherViewModel = new WeatherViewModel(darkSkyApi);
+
         fetchApiDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +53,10 @@ public class WeatherActivity extends AppCompatActivity implements Observer {
 
     @Override
     public void update(Observable observable, Object arg) {
-        if (observable instanceof WeatherViewModel) {
+        Log.v("WeatherActivity", "Update called");
+
+        if (observable instanceof WeatherViewModel)     {
+            Log.v("WeatherActivity", "Received correct updates from viewmodel");
             WeatherViewModel weatherViewModel = (WeatherViewModel) observable;
             ForecastData currentForecastData = weatherViewModel.getCurrentForecast().getCurrentForecastData();
             summaryTextView.setText(currentForecastData.getSummary());
