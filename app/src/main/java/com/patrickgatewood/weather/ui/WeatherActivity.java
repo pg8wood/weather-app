@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherActivity extends AppCompatActivity implements ViewOps {
+public class WeatherActivity extends AppCompatActivity implements WeatherView {
 
     @BindView(R.id.fetchApiDataButton)
     Button fetchApiDataButton;
@@ -38,8 +38,7 @@ public class WeatherActivity extends AppCompatActivity implements ViewOps {
         ((WeatherApplication) getApplication()).getApplicationComponent().inject(this);
         ButterKnife.bind(this);
 
-        weatherPresenter = new WeatherPresenter(dark)
-
+        weatherPresenter.attachView(this);
         fetchApiDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +50,12 @@ public class WeatherActivity extends AppCompatActivity implements ViewOps {
     @Override
     protected void onResume() {
         super.onResume();
-        weatherPresenter.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        weatherPresenter.detachView();
+        super.onDestroy();
     }
 
     @Override
