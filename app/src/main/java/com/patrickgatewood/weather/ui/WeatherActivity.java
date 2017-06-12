@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.patrickgatewood.weather.data.model.remote.request.DarkSkyApi;
 import com.patrickgatewood.weather.R;
 
 import javax.inject.Inject;
@@ -14,10 +13,16 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherActivity extends AppCompatActivity {
+public class WeatherActivity extends AppCompatActivity implements ViewOps {
 
     @BindView(R.id.fetchApiDataButton)
     Button fetchApiDataButton;
+
+    @BindView(R.id.temperatureTextView)
+    TextView temperatureTextView;
+
+    @BindView(R.id.feelsLikeTextView)
+    TextView feelsLikeTextView;
 
     @BindView(R.id.summaryTextView)
     TextView summaryTextView;
@@ -33,7 +38,7 @@ public class WeatherActivity extends AppCompatActivity {
         ((WeatherApplication) getApplication()).getApplicationComponent().inject(this);
         ButterKnife.bind(this);
 
-        weatherPresenter.setWeatherActivity(this);
+        weatherPresenter = new WeatherPresenter(dark)
 
         fetchApiDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,8 +54,13 @@ public class WeatherActivity extends AppCompatActivity {
         weatherPresenter.onResume();
     }
 
-    public TextView getSummaryTextView() {
-        return summaryTextView;
-    }
+    @Override
+    public void updateTextViews(String temperature, String feelsLikeTemp, String summary) {
+        String temp = temperature + " degrees";
+        String feelsLike = feelsLikeTemp + " degrees";
 
+        temperatureTextView.setText(temp);
+        feelsLikeTextView.setText(feelsLike);
+        summaryTextView.setText(summary);
+    }
 }

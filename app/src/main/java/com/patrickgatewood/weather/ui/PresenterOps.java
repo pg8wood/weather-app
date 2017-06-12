@@ -1,7 +1,7 @@
 package com.patrickgatewood.weather.ui;
 
 
-public interface Presenter {
+public interface PresenterOps {
 
     void onFetchButtonClick();
     void onResume();
