@@ -21,6 +21,8 @@ import butterknife.ButterKnife;
 
 public class WeatherActivity extends AppCompatActivity implements Observer {
 
+    public static final String TAG = "WeatherActivity";
+
     @BindView(R.id.fetchApiDataButton)
     Button fetchApiDataButton;
 
@@ -39,24 +41,23 @@ public class WeatherActivity extends AppCompatActivity implements Observer {
         setContentView(R.layout.activity_weather_slider);
 
         ((WeatherApplication) getApplication()).getApplicationComponent().inject(this);
-        weatherViewModel.addObserver(this);
-
         ButterKnife.bind(this);
 
+        weatherViewModel.addObserver(this);
         fetchApiDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                weatherViewModel.onFetchButtonTap(v);
+                weatherViewModel.onFetchButtonTap();
             }
         });
     }
 
     @Override
     public void update(Observable observable, Object arg) {
-        Log.v("WeatherActivity", "Update called");
+        Log.v(TAG, "Update called");
 
         if (observable instanceof WeatherViewModel)     {
-            Log.v("WeatherActivity", "Received correct updates from viewmodel");
+            Log.v(TAG, "Received correct updates from viewmodel");
             WeatherViewModel weatherViewModel = (WeatherViewModel) observable;
             ForecastData currentForecastData = weatherViewModel.getCurrentForecast().getCurrentForecastData();
             summaryTextView.setText(currentForecastData.getSummary());

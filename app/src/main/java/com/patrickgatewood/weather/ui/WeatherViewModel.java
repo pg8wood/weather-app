@@ -20,17 +20,21 @@ import retrofit2.Response;
 
 public class WeatherViewModel extends Observable {
 
+    public static final String TAG = "WeatherViewModel";
+
+    @NonNull
     private DarkSkyApi darkSkyApi;
 
-    Forecast currentForecast;
+    @Nullable
+    private Forecast currentForecast = null;
 
     @Inject
-    public WeatherViewModel(DarkSkyApi darkSkyApi) {
+    public WeatherViewModel(@NonNull DarkSkyApi darkSkyApi) {
         this.darkSkyApi = darkSkyApi;
     }
 
-    public void onFetchButtonTap(View view) {
-        Log.v("WeatherViewModel", "API call initiated");
+    public void onFetchButtonTap() {
+        Log.v(TAG, "API call initiated");
 
         // TODO get user's location
         Call<Forecast> apiCall = darkSkyApi.fetchCurrentForecast(
@@ -40,8 +44,8 @@ public class WeatherViewModel extends Observable {
         apiCall.enqueue(new Callback<Forecast>() {
             @Override
             public void onResponse(@NonNull Call<Forecast> call, @Nullable Response<Forecast> response) {
-                Log.v("WeatherViewModel", "API call was a success!");
-                Log.v("WeatherViewModel", response.body().toString());
+                Log.v(TAG, "API call was a success!");
+                Log.v(TAG, response.body().toString());
                 currentForecast = response.body();
                 setChanged();
                 notifyObservers();
@@ -49,12 +53,12 @@ public class WeatherViewModel extends Observable {
 
             @Override
             public void onFailure(@NonNull Call<Forecast> call, @NonNull Throwable t) {
-                Log.e("WeatherViewModel", "API call failed");
-                Log.e("WeatherViewModel", t.getLocalizedMessage());
+                Log.e("WeatherViewModel", "API call failed: " + t.getLocalizedMessage());
             }
         });
     }
 
+    @Nullable
     public Forecast getCurrentForecast() {
         return currentForecast;
     }

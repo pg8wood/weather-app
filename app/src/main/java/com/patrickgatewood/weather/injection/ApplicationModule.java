@@ -2,6 +2,7 @@ package com.patrickgatewood.weather.injection;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -55,6 +56,7 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
+    @NonNull
     DarkSkyApi provideDarkskyApi(Retrofit retrofit) {
         return retrofit.create(DarkSkyApi.class);
     }
