@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,16 +7,34 @@
         android:id="@+id/fetchApiDataButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/fetch_api_data"
-        android:onClick="onFetchButtonTap"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onFetchButtonTap"
+        android:text="@string/fetch_api_data" />
+
+    <TextView
+        android:id="@+id/temperatureTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="temperatureTextView" />
+
+    <TextView
+        android:id="@+id/feelsLikeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temperatureTextView"
+        android:layout_centerHorizontal="true"
+        android:text="feelsLikeTextView" />
 
     <TextView
         android:id="@+id/summaryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/feelsLikeTextView"
         android:layout_centerHorizontal="true"
-        android:text="" />
+        android:text="summaryTextView" />
+
+
 </RelativeLayout>

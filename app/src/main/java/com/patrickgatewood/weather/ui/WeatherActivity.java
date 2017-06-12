@@ -26,6 +26,12 @@ public class WeatherActivity extends AppCompatActivity implements Observer {
     @BindView(R.id.fetchApiDataButton)
     Button fetchApiDataButton;
 
+    @BindView(R.id.temperatureTextView)
+    TextView temperatureTextView;
+
+    @BindView(R.id.feelsLikeTextView)
+    TextView feelsLikeTextView;
+
     @BindView(R.id.summaryTextView)
     TextView summaryTextView;
 
@@ -60,6 +66,10 @@ public class WeatherActivity extends AppCompatActivity implements Observer {
             Log.v(TAG, "Received correct updates from viewmodel");
             WeatherViewModel weatherViewModel = (WeatherViewModel) observable;
             ForecastData currentForecastData = weatherViewModel.getCurrentForecast().getCurrentForecastData();
+            String temperature = Double.toString(currentForecastData.getTemperature()) + " degrees";
+            String feelsLikeTemperature = "Feels like: " + Double.toString(currentForecastData.getApparentTemperature()) + " degrees";
+            temperatureTextView.setText(temperature);
+            feelsLikeTextView.setText(feelsLikeTemperature);
             summaryTextView.setText(currentForecastData.getSummary());
         }
     }
