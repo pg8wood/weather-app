@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="onFetchButtonTap"
         android:text="@string/fetch_api_data" />
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="temperatureTextView" />
+        tools:text="temperatureTextView" />
 
     <TextView
         android:id="@+id/feelsLikeTextView"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/temperatureTextView"
         android:layout_centerHorizontal="true"
-        android:text="feelsLikeTextView" />
+        tools:text="feelsLikeTextView" />
 
     <TextView
         android:id="@+id/summaryTextView"
@@ -34,7 +34,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/feelsLikeTextView"
         android:layout_centerHorizontal="true"
-        android:text="summaryTextView" />
-
+        tools:text="summaryTextView" />
 
 </RelativeLayout>
