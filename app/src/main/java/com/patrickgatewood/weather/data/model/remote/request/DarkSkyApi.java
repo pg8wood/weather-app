@@ -16,7 +16,7 @@ public interface DarkSkyApi {
     @GET("{api_key}/{latitude},{longitude}")
     Call<Forecast> fetchCurrentForecast(
             @Path("api_key") String api_key,
-            @Path("latitude") String latitude,
-            @Path("longitude") String longitude
+            @Path("latitude") double latitude,
+            @Path("longitude") double longitude
     );
 }
