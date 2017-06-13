@@ -68,7 +68,7 @@ public class WeatherPresenterImpl implements WeatherPresenter {
 
             @Override
             public void onFailure(@NonNull Call<Forecast> call, @NonNull Throwable t) {
-                Log.e("WeatherPresenter", "API call failed: " + t.getLocalizedMessage());
+                Log.e(TAG, "API call failed: " + t.getLocalizedMessage());
             }
         });
     }
