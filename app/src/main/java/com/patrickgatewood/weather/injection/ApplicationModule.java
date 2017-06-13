@@ -2,6 +2,7 @@ package com.patrickgatewood.weather.injection;
 
 import android.app.Application;
 import android.content.Context;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
@@ -60,6 +61,12 @@ public class ApplicationModule {
     @NonNull
     DarkSkyApi provideDarkskyApi(Retrofit retrofit) {
         return retrofit.create(DarkSkyApi.class);
+    }
+
+    @Provides
+    @Singleton
+    LocationManager provideLocationManager() {
+        return (LocationManager) application.getSystemService(Context.LOCATION_SERVICE);
     }
 
     @Provides

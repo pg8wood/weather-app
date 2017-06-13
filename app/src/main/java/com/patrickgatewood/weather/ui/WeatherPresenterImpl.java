@@ -1,12 +1,16 @@
 package com.patrickgatewood.weather.ui;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
+import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 import com.patrickgatewood.weather.data.model.local.Constants;
@@ -31,7 +35,13 @@ public class WeatherPresenterImpl implements WeatherPresenter, LocationListener 
     private Forecast currentForecast = null;
 
     @Nullable
-    private WeatherView weatherView;
+    private WeatherView weatherView = null;
+
+    @Nullable
+    private LocationListener locationListener = null;
+
+    @Inject
+    LocationManager locationManager;
 
     @Inject
     public WeatherPresenterImpl(@NonNull DarkSkyApi darkSkyApi) {
@@ -50,11 +60,28 @@ public class WeatherPresenterImpl implements WeatherPresenter, LocationListener 
         this.weatherView = null;
     }
 
+    @Override
+    public void requestPermissions() {
+        if ((weatherView != null)
+                && (ActivityCompat.checkSelfPermission(weatherView.getWeatherActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+
+        }
+    }
+
+    @Override
+    public void onPermissionsResult() {
+
+    }
+
     public void onFetchButtonClick() {
         Log.v(TAG, "API call initiated");
 
-        // TODO get user's location and pass to query
-        queryApi(38.029306, -78.476678);
+        // TODO only get the location if it's outdated
+        getUserLocation();
+
+        // Charlottesville's lat/long
+        //queryApi(38.029306, -78.476678);
     }
 
     private void queryApi(double latitude, double longitude) {
@@ -90,6 +117,39 @@ public class WeatherPresenterImpl implements WeatherPresenter, LocationListener 
         String feelsLikeTemp = Double.toString(currentForecastData.getApparentTemperature());
 
         weatherView.updateCurrentConditionsTextViews(temperature, feelsLikeTemp, currentForecastData.getSummary());
+    }
+
+    private void getUserLocation() {
+        if (locationListener == null) {
+            createLocationListener();
+        }
+
+
+        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, locationListener, null);
+    }
+
+    private void createLocationListener() {
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
     }
 
     @Override

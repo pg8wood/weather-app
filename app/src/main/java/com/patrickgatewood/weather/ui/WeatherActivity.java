@@ -67,4 +67,9 @@ public class WeatherActivity extends AppCompatActivity implements WeatherView {
         feelsLikeTextView.setText(feelsLike);
         summaryTextView.setText(summary);
     }
+
+    @Override
+    public WeatherActivity getWeatherActivity() {
+        return this;
+    }
 }

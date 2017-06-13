@@ -5,9 +5,13 @@ import android.content.Context;
 
 public interface WeatherPresenter {
 
-    void onFetchButtonClick();
-
     void attachView(Context weatherContext);
 
     void detachView();
+
+    void requestPermissions();
+
+    void onPermissionsResult();
+
+    void onFetchButtonClick();
 }
