@@ -7,7 +7,8 @@ import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.patrickgatewood.weather.data.model.remote.request.DarkSkyApi;
-import com.patrickgatewood.weather.ui.WeatherViewModel;
+import com.patrickgatewood.weather.ui.WeatherPresenter;
+import com.patrickgatewood.weather.ui.WeatherPresenterImpl;
 
 import javax.inject.Singleton;
 
@@ -62,8 +63,7 @@ public class ApplicationModule {
     }
 
     @Provides
-    @Singleton
-    WeatherViewModel provideWeatherViewModel(DarkSkyApi darkSkyApi) {
-        return new WeatherViewModel(darkSkyApi);
+    WeatherPresenter provideWeatherPresenter(DarkSkyApi darkSkyApi) {
+        return new WeatherPresenterImpl(darkSkyApi);
     }
 }
