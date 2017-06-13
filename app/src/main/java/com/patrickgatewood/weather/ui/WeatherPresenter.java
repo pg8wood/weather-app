@@ -1,11 +1,13 @@
 package com.patrickgatewood.weather.ui;
 
 
+import android.content.Context;
+
 public interface WeatherPresenter {
 
     void onFetchButtonClick();
 
-    void attachView(WeatherActivity weatherActivity);
+    void attachView(Context weatherContext);
 
     void detachView();
 }

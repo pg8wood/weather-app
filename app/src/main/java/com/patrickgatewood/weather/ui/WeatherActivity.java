@@ -59,9 +59,9 @@ public class WeatherActivity extends AppCompatActivity implements WeatherView {
     }
 
     @Override
-    public void updateTextViews(String temperature, String feelsLikeTemp, String summary) {
-        String temp = temperature + " degrees";
-        String feelsLike = feelsLikeTemp + " degrees";
+    public void updateCurrentConditionsTextViews(String temperature, String feelsLikeTemp, String summary) {
+        String temp = "Current temperature: " + temperature + " degrees";
+        String feelsLike = "Feels like: " + feelsLikeTemp + " degrees";
 
         temperatureTextView.setText(temp);
         feelsLikeTextView.setText(feelsLike);

@@ -63,7 +63,6 @@ public class ApplicationModule {
     }
 
     @Provides
-    @Singleton
     WeatherPresenter provideWeatherPresenter(DarkSkyApi darkSkyApi) {
         return new WeatherPresenterImpl(darkSkyApi);
     }

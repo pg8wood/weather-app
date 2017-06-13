@@ -1,5 +1,6 @@
 package com.patrickgatewood.weather.ui;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -26,7 +27,7 @@ public class WeatherPresenterImpl implements WeatherPresenter {
     private Forecast currentForecast = null;
 
     @Nullable
-    private WeatherView weatherActivity;
+    private WeatherView weatherView;
 
     @Inject
     public WeatherPresenterImpl(@NonNull DarkSkyApi darkSkyApi) {
@@ -41,13 +42,15 @@ public class WeatherPresenterImpl implements WeatherPresenter {
     }
 
     @Override
-    public void attachView(WeatherActivity weatherActivity) {
-        this.weatherActivity = weatherActivity;
+    public void attachView(Context weatherContext) {
+        if (weatherContext instanceof WeatherActivity) {
+            this.weatherView = (WeatherActivity) weatherContext;
+        }
     }
 
     @Override
     public void detachView() {
-        this.weatherActivity = null;
+        this.weatherView = null;
     }
 
     private void queryApi() {
@@ -74,7 +77,7 @@ public class WeatherPresenterImpl implements WeatherPresenter {
      * Tell the view what needs to be updated
      */
     private void updateView() {
-        if (currentForecast == null || weatherActivity == null) {
+        if (currentForecast == null || weatherView == null) {
             return;
         }
 
@@ -82,7 +85,7 @@ public class WeatherPresenterImpl implements WeatherPresenter {
         String temperature = Double.toString(currentForecastData.getTemperature());
         String feelsLikeTemp = Double.toString(currentForecastData.getApparentTemperature());
 
-        weatherActivity.updateTextViews(temperature, feelsLikeTemp, currentForecastData.getSummary());
+        weatherView.updateCurrentConditionsTextViews(temperature, feelsLikeTemp, currentForecastData.getSummary());
     }
 }
 
