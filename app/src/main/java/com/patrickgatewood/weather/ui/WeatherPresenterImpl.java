@@ -1,6 +1,5 @@
 package com.patrickgatewood.weather.ui;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -42,10 +41,8 @@ public class WeatherPresenterImpl implements WeatherPresenter {
     }
 
     @Override
-    public void attachView(Context weatherContext) {
-        if (weatherContext instanceof WeatherActivity) {
-            this.weatherView = (WeatherActivity) weatherContext;
-        }
+    public void attachView(WeatherView weatherView) {
+        this.weatherView = weatherView;
     }
 
     @Override
@@ -68,7 +65,7 @@ public class WeatherPresenterImpl implements WeatherPresenter {
 
             @Override
             public void onFailure(@NonNull Call<Forecast> call, @NonNull Throwable t) {
-                Log.e("WeatherPresenter", "API call failed: " + t.getLocalizedMessage());
+                Log.e(TAG, "API call failed: " + t.getLocalizedMessage());
             }
         });
     }
