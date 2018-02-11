@@ -38,7 +38,7 @@ public class WeatherActivity extends Activity implements DefaultHardwareBackBtnH
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
         reactRootView.startReactApplication(reactInstanceManager,
-                "MyReactNativeApp", null);
+                "WeatherApp", null);
 
         setContentView(reactRootView);
 
