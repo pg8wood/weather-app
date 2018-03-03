@@ -9,3 +9,6 @@ A sample application built to learn new technologies and practice good design pr
 [Gson](https://github.com/google/gson) - Java serialization/deserialization
 
 [Retrofit](http://square.github.io/retrofit/) - Android HTTP Client
+
+# Note
+This repo is sort of a playground that I'm using to learn new technologies. As such, any given branch may have bugs, lack fully flushed-out user interfaces, etc. It's more of a learning space than a fully-developed project 📚
